@@ -1,0 +1,26 @@
+name: Test (Triggered/Manual)
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+  
+jobs:
+  Build-Package-IIS_Deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+          
+      - name: Restore
+        run: dotnet restore
+                 
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect:"XPlat Code Coverage"
