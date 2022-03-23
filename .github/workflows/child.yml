@@ -23,8 +23,8 @@ jobs:
         run: dotnet build ConsoleApp1/ConsoleApp1.csproj --no-restore
 
       - name: Test
-        run: dotnet test TestProject1/TestProject1.csproj --no-build --logger trx --results-directory "TestResults"
-        
+        run: dotnet test TestProject1/TestProject1.csproj --logger trx --results-directory "TestResults"
+
       - name: Upload unit test results
         uses: actions/upload-artifact@v2.3.1
         if: ${{ always() }}
