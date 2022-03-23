@@ -11,23 +11,24 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup .NET
+
+      - name: Setup .NET 🎇
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
           
-      - name: Restore
+      - name: Restore ⚒
         run: dotnet restore ConsoleApp1/ConsoleApp1.csproj
                  
-      - name: Build
+      - name: Build 🚀
         run: dotnet build ConsoleApp1/ConsoleApp1.csproj --no-restore
 
-      - name: Test
-        run: dotnet test TestProject1/TestProject1.csproj --logger trx --results-directory "TestResults"
+      - name: Test 🧪
+        run: dotnet test TestProject1/TestProject1.csproj --logger trx --results-directory "TestResults" -c Release
 
-      - name: Upload unit test results
+      - name: Upload unit test results 📚
         uses: actions/upload-artifact@v2.3.1
         if: ${{ always() }}
         with:
-          name: test-results
+          name: Unit-test-results
           path: TestResults
