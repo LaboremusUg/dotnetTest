@@ -24,11 +24,30 @@ jobs:
         run: dotnet build ConsoleApp1/ConsoleApp1.csproj --no-restore
 
       - name: Test 🧪
-        run: dotnet test TestProject1/TestProject1.csproj --logger trx --results-directory "TestResults" -c Release
+        run: dotnet test TestProject1/TestProject1.csproj --collect:"XPlat Code Coverage" --results-directory "TestResults"
+        #run: dotnet test TestProject1/TestProject1.csproj --logger trx --results-directory "TestResults" -c Release
 
-      - name: Upload unit test results 📚
-        uses: actions/upload-artifact@v2.3.1
-        if: ${{ always() }}
-        with:
-          name: Unit-test-results
-          path: TestResults
+      # - name: Upload unit test results 📚
+      #   uses: actions/upload-artifact@v2.3.1
+      #   if: ${{ always() }}
+      #   with:
+      #     name: Unit-test-results
+      #     path: TestResults
+
+      - name: Test
+        run: $sas=Get-ChildItem -Filter coverage.cobertura.xml -Recurse | %{$_.FullName}
+
+      - name: Test
+        run: $sas
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v1
+      #   with:
+      #     file: $sas
+      #     name: codecov
+
+
+
+
+
+        
