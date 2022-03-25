@@ -34,20 +34,13 @@ jobs:
       #     name: Unit-test-results
       #     path: TestResults
 
-      - name: Test
+      - name: Get covergae file path
         run: $sas=Get-ChildItem -Filter coverage.cobertura.xml -Recurse | %{$_.FullName}
 
-      - name: Test
-        run: $sas
+      - name: Upload coverage to Codecov 
+        uses: codecov/codecov-action@v1
+        with:
+          file: $sas
+          # name: codecov
+          # token: ${{ secrets.CODECOV }}
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v1
-      #   with:
-      #     file: $sas
-      #     name: codecov
-
-
-
-
-
-        
