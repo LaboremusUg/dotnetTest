@@ -34,7 +34,7 @@ jobs:
       #     name: Unit-test-results
       #     path: TestResults
 
-      - name: Get covergae file path
+      - name: Get coverage file path
         run: $sas=Get-ChildItem -Filter coverage.cobertura.xml -Recurse | %{$_.FullName}
 
       - name: Upload coverage to Codecov 
