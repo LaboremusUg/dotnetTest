@@ -39,8 +39,8 @@ jobs:
 
       - name: Upload coverage to Codecov 
         uses: codecov/codecov-action@v1
-        with:
-          file: ./TestProject1/TestResults/**/coverage.cobertura.xml
+        # with:
+        #   file: ./TestProject1/TestResults/**/coverage.cobertura.xml
           # name: codecov
           # token: ${{ secrets.CODECOV }}
 
